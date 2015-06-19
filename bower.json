@@ -1,0 +1,20 @@
+{
+  "name": "contentDrawer",
+  "version": "0.0.0",
+  "authors": [
+    "zaccary.price <wildtangomedia@gmail.com>"
+  ],
+  "main": "content-drawer.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "normalize-css": "~3.0.3"
+  }
+}
