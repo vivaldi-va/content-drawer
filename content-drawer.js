@@ -16,6 +16,11 @@ $(function() {
 		panelTarget.each(function(index) {
 			$(this).removeClass('panel-current');
 		});
+
+		$('.panel__ContentSection').each(function(index) {
+			$(this).removeClass('panel__ContentSection-active');
+		});
+
 	};
 
 	var hidePanel = function(panel, panelContent) {
@@ -64,10 +69,6 @@ $(function() {
 
 
 	var positionIndicator = function(indicator, target) {
-		var indicatorPos = {
-			x: indicator.getBoundingClientRect().left,
-			y: indicator.getBoundingClientRect().top
-		};
 
 		var targetWidth = target.clientWidth;
 		var targetPos = {
@@ -87,11 +88,14 @@ $(function() {
 
 	panelTarget.on('click', function(e) {
 		e.stopPropagation();
+		var activePanel;
+		var selectedPanelContentId;
 
 		positionIndicator(panelContent.parent().find('.panel__Indicator')[0], this);
 
-		var activePanel = $(".panel-" + this.className.match(/panelBelongsTo-(\d+)/)[1]);
+		activePanel = $(".panel-" + this.className.match(/panelBelongsTo-(\d+)/)[1]);
 
+		// close panel if clicking currently selected panel (toggle behaviour)
 		if($(this).hasClass('panel-current')) {
 
 			$(this).removeClass('panel-current');
@@ -99,11 +103,13 @@ $(function() {
 			hidePanel(activePanel, panelContent);
 
 		} else {
+			selectedPanelContentId = $(this).data('panelcontentid');
 
 			unselectPanels();
 			$(this).addClass('panel-current');
 			showPanel(activePanel, panelContent);
-			panelContent.html($(this).data('panel-content'));
+			$('#' + selectedPanelContentId).addClass('panel__ContentSection-active');
+//			panelContent.html($(this).data('panel-content'));
 		}
 	});
 });

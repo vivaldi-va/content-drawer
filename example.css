@@ -24,11 +24,15 @@
     position: relative;
     height: 0;
     opacity: 0;
-    transition: 0.25s opacity ease-out, 0.25s height ease-out; }
+    transition: 0.25s opacity ease-out; }
     .panel__Content-active {
       height: auto;
       opacity: 1;
       padding: 1em 0.5em; }
+  .panel__ContentSection {
+    display: none; }
+    .panel__ContentSection-active {
+      display: block; }
   .panel__Indicator {
     position: absolute;
     top: -8px;
