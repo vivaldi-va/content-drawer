@@ -30,9 +30,6 @@ $(function() {
 
 			});
 		}
-
-
-
 	};
 
 	var showPanel = function(panel, panelContent) {
@@ -67,8 +64,6 @@ $(function() {
 
 
 	var positionIndicator = function(indicator, target) {
-		console.log(indicator);
-
 		var indicatorPos = {
 			x: indicator.getBoundingClientRect().left,
 			y: indicator.getBoundingClientRect().top
@@ -80,15 +75,13 @@ $(function() {
 			y: target.getBoundingClientRect().top
 		};
 
-		var indicatorOffset = targetPos.x + (targetWidth/2) - (indicator.clientWidth / 2);
+		// use full indicator width to compensate for border size doubling effective
+		// element dimensions
+		var indicatorOffset = targetPos.x + (targetWidth/2) - indicator.clientWidth;
 
 		$(indicator).css({
 			transform: "translateX(" + indicatorOffset + "px)"
 		});
-
-		console.log('indicator pos', indicatorOffset);
-		console.log('target', target.outerWidth);
-		console.log('target pos', targetPos, target.scrollTop, target.offsetLeft);
 	};
 
 
@@ -98,7 +91,6 @@ $(function() {
 		positionIndicator(panelContent.parent().find('.panel__Indicator')[0], this);
 
 		var activePanel = $(".panel-" + this.className.match(/panelBelongsTo-(\d+)/)[1]);
-		console.log(activePanel);
 
 		if($(this).hasClass('panel-current')) {
 
